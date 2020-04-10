@@ -458,25 +458,13 @@ def shared_graphs(dirs : list, outname : str):
     ----------
     dirs : list
         List of directories
-    fname_tumor : str
-        Name of the second shared_reads file.
-    outdir : str
-        Directory for all generated graphs to be written to (automatically created if it does not already exist).
-    r3 : bool
-        Rule 3: The two smallest polyA lengths must be from the tumor sample, and at least one must have
-        more than two occurrences. If set to True, this rule must be met for any graphs generated.
-    r6 : bool
-        Rule 6: X % of tumor reads occur before the first non-tumor read. If set to True, this rule must
-        be met for any graphs generated.
-    X : float
-        Percentage of reads required to occur before the first non-tumor read for rule 6. Range 0 to 1.
-    verbose : boolean, optional
-        If true, some progress messages will be written to stdout while the function executes.
+    outname : str
+        Name of the output file.
 
     Returns
     -------
     None
-        Graphs will be written in outdir for all samples meeting the input conditions.
+        A CSV file with the shared graph names will be written to the specified filepath.
     """
     allgraphs = []
     for direc in dirs:
@@ -489,6 +477,3 @@ def shared_graphs(dirs : list, outname : str):
         wr = csv.writer(myfile)
         for x in res:
             wr.writerow([x])
-    
-    return res
-
